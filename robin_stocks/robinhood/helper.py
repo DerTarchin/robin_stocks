@@ -297,20 +297,24 @@ def request_get(url, dataType='regular', payload=None, jsonify_data=True):
             print("{0} is not a key in the dictionary".format(message), file=get_output())
             return([None])
 
-        if nextData['next']:
-            print('Found Additional pages.', file=get_output())
+        has_next = nextData['next']
+        if has_next:
+            print(">", sep=' ', end='', flush=True)
         while nextData['next']:
             try:
                 res = SESSION.get(nextData['next'])
                 res.raise_for_status()
                 nextData = res.json()
             except:
+                print("")
                 print('Additional pages exist but could not be loaded.', file=get_output())
                 return(data)
-            print('Loading page '+str(counter)+' ...', file=get_output())
+            print(">", sep=' ', end='', flush=True)
             counter += 1
             for item in nextData['results']:
                 data.append(item)
+        if has_next:
+            print("")
     elif (dataType == 'indexzero'):
         try:
             data = data['results'][0]
