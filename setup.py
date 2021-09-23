@@ -3,13 +3,10 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
-    long_description = f.read()
-
 setup(name='robin_stocks',
       version='2.0.3',
       description='A Python wrapper around the Robinhood API',
-      long_description=long_description,
+      long_description='pass',
       long_description_content_type='text/x-rst',
       url='https://github.com/jmfernandes/robin_stocks',
       author='Josh Fernandes',
